@@ -1,5 +1,4 @@
 import javax.persistence.*;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -11,8 +10,8 @@ public class Medicine {
     private int medicineId;
     @Column(name = "medName", unique = true, nullable = false)
     private String medicineName;
-    @ManyToOne
-    private Category category;
+
+    //private Category category;
     //private InputStream picture;
     @Temporal(TemporalType.DATE)
     @Column(name = "mfgDate", nullable = false)
@@ -43,13 +42,13 @@ public class Medicine {
         this.medicineName = medicineName;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+//    public Category getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
 
     public LocalDate getMfgDate() {
         return mfgDate;

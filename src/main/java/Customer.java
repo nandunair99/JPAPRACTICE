@@ -3,12 +3,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="customertbl")
 public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="customerId")
-    private int customerId;
-    @Column(name="name",nullable = false)
-    private String customerName;
+    @EmbeddedId
+    private CustomerID customerId;
+
     @Embedded
     @AttributeOverrides({
             @AttributeOverride( name = "city", column = @Column(name = "customer_city")),

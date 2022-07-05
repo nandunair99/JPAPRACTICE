@@ -17,21 +17,21 @@ public class MainClass {
 
             transaction.begin();
 
-            for (int i = 1; i <= 4; i++) {
-                Category category = new Category();
-                category.setCategoryName("category" + i);
-                for (int j = 1; j <= 2; j++) {
-                    Medicine medicine = new Medicine();
-                    medicine.setMedicineName("cat" + i + ": medicine" + j);
-                    medicine.setCategory(category);
-                    medicine.setMfgDate(new Date(new java.util.Date().getTime()).toLocalDate());
-                    medicine.setExpDate(new Date(new java.util.Date().getTime()).toLocalDate());
-                    medicine.setCreatedOn(new Timestamp(new java.util.Date().getTime()).toLocalDateTime());
-                    medicine.setUpdatedOn(new Timestamp(new java.util.Date().getTime()).toLocalDateTime());
-                    entityManager.persist(medicine);
-                }
-                entityManager.persist(category);
-            }
+//            for (int i = 1; i <= 4; i++) {
+//                Category category = new Category();
+//                category.setCategoryName("category" + i);
+//                for (int j = 1; j <= 2; j++) {
+//                    Medicine medicine = new Medicine();
+//                    medicine.setMedicineName("cat" + i + ": medicine" + j);
+//                    medicine.setCategory(category);
+//                    medicine.setMfgDate(new Date(new java.util.Date().getTime()).toLocalDate());
+//                    medicine.setExpDate(new Date(new java.util.Date().getTime()).toLocalDate());
+//                    medicine.setCreatedOn(new Timestamp(new java.util.Date().getTime()).toLocalDateTime());
+//                    medicine.setUpdatedOn(new Timestamp(new java.util.Date().getTime()).toLocalDateTime());
+//                    entityManager.persist(medicine);
+//                }
+//                entityManager.persist(category);
+//            }
 
 
 //            entityManager.merge(post);
