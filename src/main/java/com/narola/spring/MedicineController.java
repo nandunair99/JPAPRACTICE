@@ -3,6 +3,7 @@ package com.narola.spring;
 import com.narola.spring.Repository.CustomerRepository;
 import com.narola.spring.Repository.MedicineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -102,7 +103,49 @@ public class MedicineController {
     public ResponseEntity<List<Medicine>> getMedicine6(String startDate,String endDate) {
         final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        List<Medicine> medicineList = (List<Medicine>) medicineRepository.findByMfgDateBetween(LocalDate.parse(startDate, dtf),LocalDate.parse(endDate, dtf));
+        List<Medicine> medicineList = (List<Medicine>) medicineRepository.findByMfgDateBetween2(LocalDate.parse(startDate, dtf),LocalDate.parse(endDate, dtf));
+        for (Medicine med : medicineList) {
+            System.out.println(med);
+        }
+        return ResponseEntity.ok().body(medicineList);
+    }
+
+    @Transactional
+    @PostMapping("/getExpiredMedicine")
+    public ResponseEntity<List<Medicine>> getMedicine7() {
+        final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        List<Medicine> medicineList = (List<Medicine>) medicineRepository.findByExpDateGreaterThan2(LocalDate.now());
+        for (Medicine med : medicineList) {
+            System.out.println(med);
+        }
+        return ResponseEntity.ok().body(medicineList);
+    }
+
+    @Transactional
+    @PostMapping("/getByCategoryIDIsNull")
+    public ResponseEntity<List<Medicine>> getMedicine8() {
+        final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        List<Medicine> medicineList = (List<Medicine>) medicineRepository.findByCategoryCategoryIDIsNull2();
+        for (Medicine med : medicineList) {
+            System.out.println(med);
+        }
+        return ResponseEntity.ok().body(medicineList);
+    }
+
+    @Transactional
+    @PostMapping("/getByMedicineNameStartingWith")
+    public ResponseEntity<List<Medicine>> getMedicine9(String name) {
+        List<Medicine> medicineList = (List<Medicine>) medicineRepository.findByMedicineNameStartingWith2(name);
+        for (Medicine med : medicineList) {
+            System.out.println(med);
+        }
+        return ResponseEntity.ok().body(medicineList);
+    }
+
+    @Transactional
+    @PostMapping("/getByMedicineNameNotStartingWith")
+    public ResponseEntity<List<Medicine>> getMedicine10(String name) {
+        List<Medicine> medicineList = (List<Medicine>) medicineRepository.findByMedicineNameNotLike2(name);
         for (Medicine med : medicineList) {
             System.out.println(med);
         }
