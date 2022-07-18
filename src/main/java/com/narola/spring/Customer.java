@@ -16,4 +16,19 @@ public class Customer {
     })
     private Address address;
 
+    public CustomerID getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(CustomerID customerId) {
+        this.customerId = customerId;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

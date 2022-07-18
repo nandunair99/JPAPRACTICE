@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name="medicinetbl")
 public class Medicine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +17,7 @@ public class Medicine {
     private String medicineName;
 
     @ManyToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    @JoinColumn(name="cat_Id",referencedColumnName = "catId")
     private Category category;
 
     @Temporal(TemporalType.DATE)

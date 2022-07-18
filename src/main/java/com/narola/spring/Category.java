@@ -5,16 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name="categorytbl")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="catId")
     private int categoryID;
-    @Column(name="catName",unique = true,nullable = false)
+
+    @Column(name="catName")
     private String categoryName;
 
     @OneToMany( mappedBy = "category")
-    private List<Medicine> medicine=new ArrayList<>();
+    private List<Medicine> medicine;
 
     public int getID() {
         return categoryID;

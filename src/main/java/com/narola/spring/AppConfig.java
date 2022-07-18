@@ -1,5 +1,6 @@
 package com.narola.spring;
 
+import com.narola.spring.Repository.CustomerRepository;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,8 @@ public class AppConfig implements WebMvcConfigurer {
         jpaPropertiesMap.put(AvailableSettings.JPA_JDBC_USER, env.getProperty("db.user"));
         jpaPropertiesMap.put(AvailableSettings.JPA_JDBC_PASSWORD, env.getProperty("db.password"));
         jpaPropertiesMap.put(AvailableSettings.JPA_JDBC_URL, env.getProperty("db.url"));
-        jpaPropertiesMap.put(AvailableSettings.HBM2DDL_DATABASE_ACTION, env.getProperty(AvailableSettings.HBM2DDL_DATABASE_ACTION));
-        //jpaPropertiesMap.put(AvailableSettings.HBM2DDL_AUTO, env.getProperty(AvailableSettings.HBM2DDL_AUTO));
+        //jpaPropertiesMap.put(AvailableSettings.HBM2DDL_DATABASE_ACTION, env.getProperty(AvailableSettings.HBM2DDL_DATABASE_ACTION));
+        jpaPropertiesMap.put(AvailableSettings.HBM2DDL_AUTO, env.getProperty(AvailableSettings.HBM2DDL_AUTO));
         jpaPropertiesMap.put(AvailableSettings.SHOW_SQL, env.getProperty("hibernate.show_sql"));
         jpaPropertiesMap.put(AvailableSettings.FORMAT_SQL, env.getProperty("hibernate.format_sql"));
 
@@ -54,5 +55,11 @@ public class AppConfig implements WebMvcConfigurer {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
+    }
+
+    public CustomerRepository getCustomerRepository()
+    {
+        CustomerRepository customerRepository=new CustomerRepository();
+        return customerRepository;
     }
 }
